@@ -1,6 +1,6 @@
-# SeenIt - Votre Tracker de Watchlist Personnel
+# ReelMark - Votre Tracker de Watchlist Personnel
 
-**SeenIt** est une application moderne de suivi de contenu qui vous permet de garder une trace précise de tous les films, séries, documentaires et autres contenus que vous avez déjà visionnés. Ne perdez plus jamais le fil de ce que vous avez regardé et découvrez facilement ce qui vous reste à explorer.
+**ReelMark** est une application moderne de suivi de contenu qui vous permet de garder une trace précise de tous les films, séries, documentaires et autres contenus que vous avez déjà visionnés. Ne perdez plus jamais le fil de ce que vous avez regardé et découvrez facilement ce qui vous reste à explorer.
 
 ## 🎬 Fonctionnalités
 
@@ -22,8 +22,8 @@
 Clonez le dépôt et installez les dépendances :
 
 ```bash
-git clone https://github.com/votre-username/seenit.git
-cd seenit
+git clone https://github.com/gitsawkit/watchlist
+cd whatchlist
 pnpm install
 ```
 

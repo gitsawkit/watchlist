@@ -30,7 +30,7 @@ export async function signup(prevState: unknown, formData: FormData) {
   const email = formData.get('email') as string
   const password = formData.get('password') as string
   const confirmPassword = formData.get('confirm-password') as string
-  const name = formData.get('name') as string
+  const username = formData.get('username') as string
 
   if (password !== confirmPassword) {
     return { error: 'Les mots de passe ne correspondent pas' }
@@ -41,7 +41,7 @@ export async function signup(prevState: unknown, formData: FormData) {
     password,
     options: {
       data: {
-        full_name: name,
+        full_name: username,
       },
     },
   })

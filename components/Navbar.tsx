@@ -16,7 +16,7 @@ export default async function Navbar() {
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="font-display text-2xl font-normal text-text">
-              SeenIt
+              ReelMark
             </Link>
           </div>
 
@@ -47,7 +47,7 @@ export default async function Navbar() {
             {user ? (
               <div className="flex items-center gap-4">
                 <span className="text-sm text-muted hidden md:inline-block">
-                  {user.email}
+                  {user.user_metadata.full_name}
                 </span>
                 <form action={signout}>
                   <Button variant="outline" type="submit">

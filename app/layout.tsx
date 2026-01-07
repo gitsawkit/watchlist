@@ -17,7 +17,7 @@ const display = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: "SeenIt",
+  title: "ReelMark",
   description: "Votre compagnon personnel pour suivre et organiser tous les films, séries et contenus que vous avez déjà vus. Gardez une trace de votre parcours cinématographique et découvrez ce que vous avez manqué.",
 };
 

@@ -8,7 +8,7 @@ export default function HeroSection() {
       <CinemaSpotlight />
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         <h1 className="mb-6 font-display text-6xl font-normal tracking-tight text-text md:text-8xl lg:text-9xl">
-          SeenIt
+          ReelMark
         </h1>
         <p className="mb-4 text-xl text-muted md:text-2xl">
           Votre compagnon personnel pour suivre et organiser

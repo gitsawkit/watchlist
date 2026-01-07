@@ -44,7 +44,7 @@ export default function FeaturesSection() {
     <section className="px-6 py-20 lg:px-12">
       <div className="mx-auto max-w-6xl">
         <h2 className="mb-12 text-center font-display text-5xl font-normal text-text md:text-6xl">
-          Pourquoi SeenIt ?
+          Pourquoi ReelMark ?
         </h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
