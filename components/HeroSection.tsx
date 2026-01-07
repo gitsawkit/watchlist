@@ -1,4 +1,6 @@
+import Link from "next/link";
 import CinemaSpotlight from "@/components/ui/cinema-spotlight";
+import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   return (
@@ -15,18 +17,12 @@ export default function HeroSection() {
           tous les films, séries et contenus que vous avez déjà vus
         </p>
         <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-          <a
-            href="/signup"
-            className="rounded-(--radius-cinema) bg-red-2 px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-red"
-          >
-            Créer un compte
-          </a>
-          <a
-            href="/login"
-            className="rounded-(--radius-cinema) border border-border bg-surface px-8 py-4 text-lg font-semibold text-text transition-all hover:bg-surface-2"
-          >
-            Se connecter
-          </a>
+          <Button asChild className="px-8 py-4 text-lg">
+            <Link href="/signup">Créer un compte</Link>
+          </Button>
+          <Button asChild variant="outline" className="px-8 py-4 text-lg">
+            <Link href="/login">Se connecter</Link>
+          </Button>
         </div>
       </div>
     </section>

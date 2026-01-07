@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+
 export default function CTASection() {
   return (
     <section className="px-6 py-20 lg:px-12">
@@ -10,18 +13,12 @@ export default function CTASection() {
           parcours cinématographique.
         </p>
         <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-          <a
-            href="/signup"
-            className="rounded-(--radius-cinema) bg-red-2 px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-red"
-          >
-            Créer un compte gratuitement
-          </a>
-          <a
-            href="/login"
-            className="rounded-(--radius-cinema) border border-border bg-surface px-8 py-4 text-lg font-semibold text-text transition-all hover:bg-surface-2"
-          >
-            J&apos;ai déjà un compte
-          </a>
+          <Button asChild className="px-8 py-4 text-lg">
+            <Link href="/signup">Créer un compte gratuitement</Link>
+          </Button>
+          <Button asChild variant="outline" className="px-8 py-4 text-lg">
+            <Link href="/login">J&apos;ai déjà un compte</Link>
+          </Button>
         </div>
       </div>
     </section>

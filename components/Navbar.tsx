@@ -1,17 +1,20 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="flex h-16 items-center justify-between">
+        <div className="grid grid-cols-3 h-16 items-center">
           {/* Logo */}
-          <Link href="/" className="font-display text-2xl font-normal text-text">
-            SeenIt
-          </Link>
+          <div className="flex items-center">
+            <Link href="/" className="font-display text-2xl font-normal text-text">
+              SeenIt
+            </Link>
+          </div>
 
           {/* Navigation Links - Desktop */}
-          <div className="hidden items-center gap-8 md:flex">
+          <div className="hidden items-center justify-center gap-8 md:flex">
             <Link
               href="/"
               className="text-muted transition-colors hover:text-text"
@@ -33,19 +36,13 @@ export default function Navbar() {
           </div>
 
           {/* Auth Buttons */}
-          <div className="flex items-center gap-4">
-            <Link
-              href="/login"
-              className="rounded-(--radius-cinema) border border-border bg-surface px-4 py-2 text-sm font-semibold text-text transition-all hover:bg-surface-2"
-            >
-              Connexion
-            </Link>
-            <Link
-              href="/signup"
-              className="rounded-(--radius-cinema) bg-red-2 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-red"
-            >
-              Inscription
-            </Link>
+          <div className="flex items-center justify-end gap-4">
+            <Button asChild variant="outline">
+              <Link href="/login">Connexion</Link>
+            </Button>
+            <Button asChild>
+              <Link href="/signup">Inscription</Link>
+            </Button>
           </div>
         </div>
       </div>
