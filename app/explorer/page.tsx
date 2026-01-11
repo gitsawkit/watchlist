@@ -30,7 +30,7 @@ export default async function ExplorerPage() {
   return (
     <div className="container mx-auto py-12 px-6">
       <div className="mb-10">
-        <h1 className="text-3xl font-bold mb-2">Explorer, {user.user_metadata.full_name || "Cinéphile"}</h1>
+        <h1 className="text-3xl font-bold mb-2">Explorer</h1>
         <p className="text-muted">Découvrez des films à ajouter à votre collection.</p>
       </div>
 

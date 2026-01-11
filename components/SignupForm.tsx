@@ -120,7 +120,7 @@ export function SignupForm({
                 </FieldDescription>
               </Field>
               {state?.error && (
-                <p className="text-sm text-red-500 text-center">{state.error}</p>
+                <p className="text-sm text-red-2 text-center">{state.error}</p>
               )}
               <Field>
                 <Button type="submit" disabled={isPending}>

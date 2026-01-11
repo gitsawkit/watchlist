@@ -52,7 +52,7 @@ export function MovieCard({ movie, className }: MovieCardProps) {
           </div>
 
           <div className="flex gap-2">
-            <Button size="sm" className="flex-1 gap-2 bg-red hover:bg-red-2 text-text border-none shadow-lg cursor-pointer">
+            <Button size="sm" className="flex-1 gap-2 bg-red hover:bg-red-2 text-text border-none shadow-cinema cursor-pointer">
               <Plus className="h-4 w-4 fill-current" />
               <span className="hidden md:inline">Ajouter</span>
             </Button>
