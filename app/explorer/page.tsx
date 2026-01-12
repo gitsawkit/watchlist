@@ -45,11 +45,11 @@ export default async function ExplorerPage() {
       {/* 1. L'actualité chaude */}
       <MovieSection title="Tendances de la semaine" movies={moviesTrending} categoryUrl="/explorer/trending" />
       <MovieSection title="Actuellement au cinéma" movies={moviesNowPlaying} categoryUrl="/explorer/now-playing" />
-      
+
       {/* 2. Les valeurs sûres */}
       <MovieSection title="Films Populaires" movies={moviesPopular} categoryUrl="/explorer/popular" />
       <MovieSection title="Les Mieux Notés" movies={moviesTopRated} categoryUrl="/explorer/top-rated" />
-      
+
       {/* 3. Le futur */}
       <MovieSection title="Prochainement" movies={moviesUpcoming} categoryUrl="/explorer/upcoming" />
     </div>

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { Movie } from "@/lib/tmdb"
 import { MovieCard } from "@/components/MovieCard"
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"
@@ -15,6 +15,7 @@ interface MovieSectionProps {
 
 export function MovieSection({ title, movies, categoryUrl }: MovieSectionProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [expandedMovieId, setExpandedMovieId] = useState<number | null>(null)
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -65,7 +66,12 @@ export function MovieSection({ title, movies, categoryUrl }: MovieSectionProps) 
               opacity: 0,
             }}
           >
-            <MovieCard movie={movie} className="h-full" />
+            <MovieCard 
+              movie={movie} 
+              className="h-full"
+              isExpanded={expandedMovieId === movie.id}
+              onToggle={() => setExpandedMovieId(expandedMovieId === movie.id ? null : movie.id)}
+            />
           </div>
         ))}
 
