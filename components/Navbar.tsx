@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/server";
 import {
@@ -14,6 +13,7 @@ import { Settings } from "lucide-react";
 import { SignoutButton } from "@/components/SignoutButton";
 import { NavbarMobile } from "@/components/NavbarMobile";
 import { NavLinks } from "@/components/NavLinks";
+import { UserAvatar } from "@/components/UserAvatar";
 
 export default async function Navbar() {
   const supabase = await createClient();
@@ -54,18 +54,12 @@ export default async function Navbar() {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="outline" size="icon-lg" className="rounded-full overflow-hidden border-2 border-transparent data-[state=open]:border-red transition-all duration-200">
-                      <Image
-                        src={user.user_metadata.picture?
-                          user.user_metadata.picture:
-                          `https://api.dicebear.com/9.x/initials/svg?seed=${
-                            user.user_metadata.full_name
-                            ?user.user_metadata.full_name
-                            :user.user_metadata.email.split('@')[0]}&size=128&backgroundType=gradientLinear&backgroundColor=d97706&fontWeight=600&fontFamily=Tahoma&chars=1`}
-                        alt="User avatar"
-                        width={128}
-                        height={128}
+                      <UserAvatar
+                        picture={user.user_metadata.picture}
+                        fullName={user.user_metadata.full_name}
+                        email={user.user_metadata.email}
+                        size={128}
                         className="select-none"
-                        unoptimized
                       />
                     </Button>
                   </DropdownMenuTrigger>

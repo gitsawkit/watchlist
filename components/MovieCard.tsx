@@ -35,7 +35,7 @@ export function MovieCard({ movie, className }: MovieCardProps) {
           </div>
 
           <div className="absolute top-3 right-3 z-10 translate-y-0 transition-transform duration-300 group-hover:-translate-y-1 pointer-events-none">
-            <div className="flex items-center gap-1 rounded-full bg-surface/40 px-2 py-1 text-xs font-bold text-gold backdrop-blur-md border border-gold/20 shadow-sm">
+            <div className="flex items-center gap-1 rounded-full bg-surface/40 px-2 py-1 text-xs font-bold text-gold backdrop-blur-md border border-(--gold)/20 shadow-sm">
               <Star className="h-3 w-3 fill-current" />
               <span className="text-text">{movie.vote_average.toFixed(1)}</span>
             </div>

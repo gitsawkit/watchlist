@@ -30,7 +30,7 @@ export function NavLinks({ className, onLinkClick }: NavLinksProps) {
           className={cn(
             "text-muted transition-colors hover:text-text text-nowrap",
             !isRow && "px-4 py-2 rounded-md",
-            pathname === link.href && "text-text bg-surface-2"
+            pathname === link.href && "text-text"
           )}
         >
           {link.label}

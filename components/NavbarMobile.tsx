@@ -3,11 +3,11 @@
 import { useState } from "react"
 import { createPortal } from "react-dom"
 import Link from "next/link"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Settings, Menu, X } from "lucide-react"
 import { SignoutButton } from "@/components/SignoutButton"
 import { NavLinks } from "@/components/NavLinks"
+import { UserAvatar } from "@/components/UserAvatar"
 
 interface NavbarMobileProps {
   user: {
@@ -48,20 +48,12 @@ export function NavbarMobile({ user }: NavbarMobileProps) {
               {/* Header avec avatar */}
               <div className="p-6 border-b border-border">
                 <div className="flex items-center gap-4 mb-4">
-                  <Image
-                    src={
-                      user.user_metadata.picture
-                        ? user.user_metadata.picture
-                        : `https://api.dicebear.com/9.x/initials/svg?seed=${
-                            user.user_metadata.full_name
-                              ? user.user_metadata.full_name
-                              : user.user_metadata.email?.split("@")[0] || "user"
-                          }&size=128&backgroundType=gradientLinear&backgroundColor=d97706&fontWeight=600&fontFamily=Tahoma&chars=1`}
-                    alt="User avatar"
-                    width={64}
-                    height={64}
+                  <UserAvatar
+                    picture={user.user_metadata.picture}
+                    fullName={user.user_metadata.full_name}
+                    email={user.user_metadata.email}
+                    size={64}
                     className="rounded-full object-cover"
-                    unoptimized
                   />
                   <div>
                     <p className="text-sm font-medium text-text">
