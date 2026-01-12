@@ -14,7 +14,7 @@ interface MovieCardProps {
 export function MovieCard({ movie, className }: MovieCardProps) {
   return (
     <div className={cn(
-      "group relative overflow-hidden rounded-(--radius-cinema) bg-surface transition-all duration-300 hover:shadow-cinema hover:scale-[1.02]",
+      "group relative overflow-hidden rounded-(--radius-cinema) bg-surface transition-all duration-300 hover:shadow-cinema hover:scale-[1.02] transform",
       className
     )}>
       <div className="relative aspect-2/3 w-full overflow-hidden">

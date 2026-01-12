@@ -12,7 +12,7 @@ export default function FeatureCard({
   description,
 }: FeatureCardProps) {
   return (
-    <Card className="shadow-cinema">
+    <Card className="shadow-cinema transform transition-all duration-300 hover:scale-105 hover:shadow-lg group">
       <CardContent className="p-8">
         <div className="mb-4 text-4xl">{icon}</div>
         <h3 className="mb-3 font-display text-2xl font-normal text-text">

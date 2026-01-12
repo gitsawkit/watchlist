@@ -55,10 +55,15 @@ export function MovieSection({ title, movies, categoryUrl }: MovieSectionProps) 
         ref={scrollContainerRef}
         className="flex gap-4 overflow-x-auto pb-4 -mx-1 px-1 scrollbar-hide snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
       >
-        {movies.map((movie) => (
+        {movies.map((movie, index) => (
           <div 
             key={movie.id} 
             className="flex-none w-[160px] md:w-[200px] snap-start"
+            style={{
+              animation: `slideUp 0.5s ease-out forwards`,
+              animationDelay: `${index * 50}ms`,
+              opacity: 0,
+            }}
           >
             <MovieCard movie={movie} className="h-full" />
           </div>

@@ -43,17 +43,31 @@ export default function FeaturesSection() {
   return (
     <section className="px-6 py-20 lg:px-12">
       <div className="mx-auto max-w-6xl">
-        <h2 className="mb-12 text-center font-display text-5xl font-normal text-text md:text-6xl">
+        <h2
+          className="mb-12 text-center font-display text-5xl font-normal text-text md:text-6xl"
+          style={{
+            animation: "slideUp 0.6s ease-out forwards",
+            opacity: 0,
+          }}
+        >
           Pourquoi ReelMark ?
         </h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
-            <FeatureCard
+            <div
               key={index}
-              icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
-            />
+              style={{
+                animation: `fadeIn 0.6s ease-out forwards`,
+                animationDelay: `${index * 100}ms`,
+                opacity: 0,
+              }}
+            >
+              <FeatureCard
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+              />
+            </div>
           ))}
         </div>
       </div>

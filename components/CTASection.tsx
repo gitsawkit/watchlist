@@ -13,10 +13,10 @@ export default function CTASection() {
           parcours cinématographique.
         </p>
         <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-          <Button asChild className="px-8 py-4 text-lg">
+          <Button asChild className="px-8 py-4 text-lg transform hover:scale-105 active:scale-95 transition-transform duration-200">
             <Link href="/signup">Créer un compte gratuitement</Link>
           </Button>
-          <Button asChild variant="outline" className="px-8 py-4 text-lg">
+          <Button asChild variant="outline" className="px-8 py-4 text-lg transform hover:scale-105 active:scale-95 transition-transform duration-200">
             <Link href="/login">J&apos;ai déjà un compte</Link>
           </Button>
         </div>

@@ -17,16 +17,16 @@ export function CategoryNav() {
 
   return (
     <div className="flex overflow-x-auto pb-2 mb-8 gap-2 scrollbar-hide">
-      <Link 
+      <Link
         href="/explorer"
         className={cn(
           "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors",
-          pathname === "/explorer" 
-            ? "bg-red text-text shadow-lg shadow-red/20" 
+          pathname === "/explorer"
+            ? "bg-red text-text shadow-lg shadow-red/20"
             : "bg-surface-2 text-muted hover:text-text hover:bg-surface-3"
         )}
       >
-        Vue d'ensemble
+        Vue d&apos;ensemble
       </Link>
       {categories.map((category) => (
         <Link
@@ -35,7 +35,7 @@ export function CategoryNav() {
           className={cn(
             "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors",
             pathname === category.href
-              ? "bg-red text-text shadow-lg shadow-red/20" 
+              ? "bg-red text-text shadow-lg shadow-red/20"
               : "bg-surface-2 text-muted hover:text-text hover:bg-surface-3"
           )}
         >
