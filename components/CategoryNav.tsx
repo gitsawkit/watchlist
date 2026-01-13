@@ -16,7 +16,7 @@ export function CategoryNav() {
   const pathname = usePathname()
 
   return (
-    <div className="flex overflow-x-auto pb-2 mb-8 gap-2 scrollbar-hide">
+    <div className="flex overflow-x-auto pb-2 mb-8 gap-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
       <Link
         href="/explorer"
         className={cn(
