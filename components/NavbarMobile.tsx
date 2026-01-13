@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { createPortal } from "react-dom"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -24,6 +24,20 @@ export function NavbarMobile({ user }: NavbarMobileProps) {
 
   const toggleMenu = () => setIsOpen(!isOpen)
   const closeMenu = () => setIsOpen(false)
+
+  // Empêcher le scroll du body lorsque le menu est ouvert
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+
+    // Nettoyer lors du démontage
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [isOpen])
 
   const menuContent = isOpen && (
     <>
