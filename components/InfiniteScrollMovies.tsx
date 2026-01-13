@@ -69,13 +69,13 @@ export function InfiniteScrollMovies({ initialMovies, category }: InfiniteScroll
   return (
     <>
       <MovieGrid movies={movies} />
-      
+
       {hasMore && (
         <div ref={ref} className="flex justify-center py-8">
           <Loader2 className="w-8 h-8 animate-spin text-red-2" />
         </div>
       )}
-      
+
       {!hasMore && (
         <div className="text-center py-8 text-muted">
           Vous avez tout vu !

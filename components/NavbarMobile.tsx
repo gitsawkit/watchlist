@@ -35,7 +35,7 @@ export function NavbarMobile({ user }: NavbarMobileProps) {
         }}
         onClick={closeMenu}
       />
- 
+
       {/* Menu latéral */}
       <div
         className="fixed inset-y-0 left-0 z-50 w-80 bg-surface border-r border-border shadow-lg overflow-y-auto md:hidden"
@@ -47,6 +47,18 @@ export function NavbarMobile({ user }: NavbarMobileProps) {
             <div className="flex flex-col h-full">
               {/* Header avec avatar */}
               <div className="p-6 border-b border-border">
+                {/* Bouton fermer */}
+                <div className="flex justify-end">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={closeMenu}
+                    className="h-8 w-8"
+                    aria-label="Fermer le menu"
+                  >
+                    <X className="h-5 w-5" />
+                  </Button>
+                </div>
                 <div className="flex items-center gap-4 mb-4">
                   <UserAvatar
                     picture={user.user_metadata.picture}
