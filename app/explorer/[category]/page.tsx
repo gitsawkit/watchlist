@@ -23,7 +23,6 @@ export default async function CategoryPage(props: PageProps) {
   let title = ""
   let initialMovies = []
 
-  // Chargement initial (page 1) coté serveur
   switch (category) {
     case "popular":
       initialMovies = await getPopularMovies(1)
@@ -56,7 +55,7 @@ export default async function CategoryPage(props: PageProps) {
       </div>
 
       <CategoryNav />
-      
+
       <InfiniteScrollMovies key={category} initialMovies={initialMovies} category={category} />
     </div>
   )

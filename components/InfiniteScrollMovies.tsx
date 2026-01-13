@@ -20,7 +20,6 @@ export function InfiniteScrollMovies({ initialMovies, category }: InfiniteScroll
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref)
 
-  // Réinitialiser l'état quand la catégorie ou les films initiaux changent
   useEffect(() => {
     setMovies(initialMovies)
     setPage(2)
@@ -35,15 +34,13 @@ export function InfiniteScrollMovies({ initialMovies, category }: InfiniteScroll
       setLoading(true)
       try {
         const newMovies = await fetchMoreMovies(category, page)
-        
         if (newMovies.length === 0) {
           setHasMore(false)
         } else {
-          // Filtrer les doublons potentiels
           setMovies((prev) => {
             const existingIds = new Set(prev.map(m => m.id))
             const uniqueNewMovies = newMovies.filter(m => !existingIds.has(m.id))
-            
+
             if (uniqueNewMovies.length === 0) {
               setHasMore(false)
               return prev
@@ -62,9 +59,7 @@ export function InfiniteScrollMovies({ initialMovies, category }: InfiniteScroll
     if (inView) {
       loadMore()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView]) 
-
+  }, [category, hasMore, inView, loading, page])
 
   return (
     <>

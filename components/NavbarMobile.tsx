@@ -25,7 +25,6 @@ export function NavbarMobile({ user }: NavbarMobileProps) {
   const toggleMenu = () => setIsOpen(!isOpen)
   const closeMenu = () => setIsOpen(false)
 
-  // Empêcher le scroll du body lorsque le menu est ouvert
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"
@@ -33,7 +32,6 @@ export function NavbarMobile({ user }: NavbarMobileProps) {
       document.body.style.overflow = ""
     }
 
-    // Nettoyer lors du démontage
     return () => {
       document.body.style.overflow = ""
     }
@@ -41,7 +39,6 @@ export function NavbarMobile({ user }: NavbarMobileProps) {
 
   const menuContent = isOpen && (
     <>
-      {/* Backdrop */}
       <div
         className="fixed inset-0 z-50 bg-surface/50 backdrop-blur-xs md:hidden"
         style={{
@@ -50,7 +47,6 @@ export function NavbarMobile({ user }: NavbarMobileProps) {
         onClick={closeMenu}
       />
 
-      {/* Menu latéral */}
       <div
         className="fixed inset-y-0 left-0 z-50 w-80 bg-surface border-r border-border shadow-lg overflow-y-auto md:hidden"
         style={{
@@ -58,59 +54,55 @@ export function NavbarMobile({ user }: NavbarMobileProps) {
         }}
         onClick={(e) => e.stopPropagation()}
       >
-            <div className="flex flex-col h-full">
-              {/* Header avec avatar */}
-              <div className="p-6 border-b border-border">
-                {/* Bouton fermer */}
-                <div className="flex justify-end">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={closeMenu}
-                    className="h-8 w-8"
-                    aria-label="Fermer le menu"
-                  >
-                    <X className="h-5 w-5" />
-                  </Button>
-                </div>
-                <div className="flex items-center gap-4 mb-4">
-                  <UserAvatar
-                    picture={user.user_metadata.picture}
-                    fullName={user.user_metadata.full_name}
-                    email={user.user_metadata.email}
-                    size={64}
-                    className="rounded-full object-cover"
-                  />
-                  <div>
-                    <p className="text-sm font-medium text-text">
-                      {user.user_metadata.full_name || "Utilisateur"}
-                    </p>
-                    <p className="text-xs text-muted">{user.user_metadata.email || ""}</p>
-                  </div>
-                </div>
-
-                {/* Actions utilisateur */}
-                <div className="flex flex-col gap-2 mt-4">
-                  <Link
-                    href="/settings"
-                    className="flex items-center gap-2 px-4 py-2 rounded-md text-muted hover:text-text hover:bg-surface-2 transition-colors"
-                    onClick={closeMenu}
-                  >
-                    <Settings className="h-4 w-4" />
-                    <span>Paramètres</span>
-                  </Link>
-                  <div className="px-4">
-                    <SignoutButton />
-                  </div>
-                </div>
-              </div>
-
-              {/* Navigation Links */}
-              <div className="flex-1 p-4">
-                <NavLinks onLinkClick={closeMenu} />
-              </div>
+        <div className="flex flex-col h-full">
+          <div className="p-6 border-b border-border">
+            <div className="flex justify-end">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={closeMenu}
+                className="h-8 w-8"
+                aria-label="Fermer le menu"
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
+            <div className="flex items-center gap-4 mb-4">
+              <UserAvatar
+                picture={user.user_metadata.picture}
+                fullName={user.user_metadata.full_name}
+                email={user.user_metadata.email}
+                size={64}
+                className="rounded-full object-cover"
+              />
+            <div>
+              <p className="text-sm font-medium text-text">
+                {user.user_metadata.full_name || "Utilisateur"}
+              </p>
+              <p className="text-xs text-muted">{user.user_metadata.email || ""}</p>
             </div>
           </div>
+
+          <div className="flex flex-col gap-2 mt-4">
+            <Link
+              href="/settings"
+              className="flex items-center gap-2 px-4 py-2 rounded-md text-muted hover:text-text hover:bg-surface-2 transition-colors"
+              onClick={closeMenu}
+            >
+            <Settings className="h-4 w-4" />
+            <span>Paramètres</span>
+            </Link>
+            <div className="px-4">
+              <SignoutButton />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-1 p-4">
+          <NavLinks onLinkClick={closeMenu} />
+        </div>
+      </div>
+      </div>
     </>
   )
 
@@ -126,7 +118,6 @@ export function NavbarMobile({ user }: NavbarMobileProps) {
         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </Button>
 
-      {/* Menu overlay via portal */}
       {typeof window !== "undefined" && isOpen && createPortal(menuContent, document.body)}
     </>
   )

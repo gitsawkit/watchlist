@@ -12,7 +12,6 @@ export default async function ExplorerPage() {
     redirect("/login")
   }
 
-  // On lance toutes les requêtes en parallèle pour la performance
   const [
     moviesTrending,
     moviesNowPlaying,
@@ -29,7 +28,7 @@ export default async function ExplorerPage() {
 
   return (
     <div className="container mx-auto py-12 px-6">
-      <div 
+      <div
         className="mb-10"
         style={{
           animation: "slideUp 0.6s ease-out forwards",
@@ -41,16 +40,10 @@ export default async function ExplorerPage() {
       </div>
 
       <CategoryNav />
-
-      {/* 1. L'actualité chaude */}
       <MovieSection title="Tendances de la semaine" movies={moviesTrending} categoryUrl="/explorer/trending" />
       <MovieSection title="Actuellement au cinéma" movies={moviesNowPlaying} categoryUrl="/explorer/now-playing" />
-
-      {/* 2. Les valeurs sûres */}
       <MovieSection title="Films Populaires" movies={moviesPopular} categoryUrl="/explorer/popular" />
       <MovieSection title="Les Mieux Notés" movies={moviesTopRated} categoryUrl="/explorer/top-rated" />
-
-      {/* 3. Le futur */}
       <MovieSection title="Prochainement" movies={moviesUpcoming} categoryUrl="/explorer/upcoming" />
     </div>
   )

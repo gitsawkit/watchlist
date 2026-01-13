@@ -31,7 +31,7 @@ export function MovieSection({ title, movies, categoryUrl }: MovieSectionProps) 
           <h2 className="text-2xl font-bold group-hover/title:text-red-2 transition-colors">{title}</h2>
           <ArrowRight className="w-5 h-5 opacity-0 -translate-x-2 group-hover/title:opacity-100 group-hover/title:translate-x-0 transition-all duration-300 text-red-2" />
         </Link>
-        
+
         <div className="hidden md:flex gap-2 opacity-0 group-hover/section:opacity-100 transition-opacity duration-300">
           <Button
             variant="outline"
@@ -51,14 +51,14 @@ export function MovieSection({ title, movies, categoryUrl }: MovieSectionProps) 
           </Button>
         </div>
       </div>
-      
-      <div 
+
+      <div
         ref={scrollContainerRef}
         className="flex gap-4 overflow-x-auto pb-4 -mx-1 px-1 scrollbar-hide snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
       >
         {movies.map((movie, index) => (
-          <div 
-            key={movie.id} 
+          <div
+            key={movie.id}
             className="flex-none w-[160px] md:w-[200px] snap-start"
             style={{
               animation: `slideUp 0.5s ease-out forwards`,
@@ -66,8 +66,8 @@ export function MovieSection({ title, movies, categoryUrl }: MovieSectionProps) 
               opacity: 0,
             }}
           >
-            <MovieCard 
-              movie={movie} 
+            <MovieCard
+              movie={movie}
               className="h-full"
               isExpanded={expandedMovieId === movie.id}
               onToggle={() => setExpandedMovieId(expandedMovieId === movie.id ? null : movie.id)}
@@ -75,7 +75,7 @@ export function MovieSection({ title, movies, categoryUrl }: MovieSectionProps) 
           </div>
         ))}
 
-        <Link 
+        <Link
           href={categoryUrl}
           className="flex-none w-[160px] md:w-[200px] snap-start flex flex-col items-center justify-center gap-4 rounded-(--radius-cinema) bg-surface-2/30 hover:bg-surface-2/50 border-2 border-dashed border-border/30 hover:border-red-2/50 transition-all group/card cursor-pointer"
         >

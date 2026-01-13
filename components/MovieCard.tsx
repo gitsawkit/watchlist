@@ -48,8 +48,8 @@ export function MovieCard({ movie, className, isExpanded = false, onToggle }: Mo
             "md:group-hover:-translate-y-1 md:group-hover:opacity-100",
             isExpanded && "-translate-y-1 opacity-100 md:translate-y-0 md:opacity-0"
           )}>
-            <Button 
-              size="icon" 
+            <Button
+              size="icon"
               className="h-8 w-8 rounded-full bg-surface/40 text-text backdrop-blur-md border border-border/10 hover:bg-surface/60 hover:text-text transition-colors cursor-pointer"
               title="Marquer comme vu"
               onClick={(e) => e.stopPropagation()}

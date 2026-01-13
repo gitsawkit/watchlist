@@ -25,28 +25,24 @@ export default async function Navbar() {
     <nav className="sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="grid grid-cols-3 h-16 items-center">
-          {/* Menu Mobile */}
           {user ? (
             <div className="flex items-center md:hidden justify-start col-start-1">
               <NavbarMobile user={user as { user_metadata: { full_name?: string; picture?: string }; email?: string }} />
             </div>
-          ) : (<></>)}
+          ) : null}
 
-          {/* Logo */}
           <div className="flex justify-center md:justify-start col-start-2 md:col-start-1">
             <Link href="/" className="font-display text-2xl font-normal text-text transform transition-transform duration-200 hover:scale-105">
               ReelMark
             </Link>
           </div>
 
-          {/* Navigation Links - Desktop */}
           {user ? (
             <div className="hidden md:flex gap-8 justify-center col-start-2">
               <NavLinks className="flex-row gap-8" />
             </div>
-          ) : (<></>)}
+          ) : null}
 
-          {/* Auth Buttons */}
           <div className="hidden md:flex gap-4 justify-end col-start-3">
             {user ? (
               <div className="flex items-center gap-4">
