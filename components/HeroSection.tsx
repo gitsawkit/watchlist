@@ -1,7 +1,7 @@
 import Link from "next/link";
 import CinemaSpotlight from "@/components/ui/cinema-spotlight";
 import { Button } from "@/components/ui/button";
-import Logo from "@/components/Logo";
+import Title from "@/components/Title";
 
 export default function HeroSection() {
   return (
@@ -16,7 +16,7 @@ export default function HeroSection() {
           }}
         >
           <span>
-            <Logo className="inline h-[0.7em] w-auto align-baseline text-text" />eelMark
+            <Title className="inline h-[0.7em] w-auto align-baseline text-text" />
           </span>
         </h1>
         <p
