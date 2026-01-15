@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CinemaSpotlight from "@/components/ui/cinema-spotlight";
 import { Button } from "@/components/ui/button";
+import Logo from "@/components/Logo";
 
 export default function HeroSection() {
   return (
@@ -14,7 +15,9 @@ export default function HeroSection() {
             opacity: 0,
           }}
         >
-          ReelMark
+          <span>
+            <Logo className="inline h-[0.7em] w-auto align-baseline text-text" />eelMark
+          </span>
         </h1>
         <p
           className="mb-4 text-xl text-muted md:text-2xl"
