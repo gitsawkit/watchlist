@@ -9,9 +9,10 @@ export async function GET(request: Request) {
 
   if (code) {
     const supabase = await createClient()
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    const { data, error } = await supabase.auth.exchangeCodeForSession(code)
 
-    if (!error) {
+    if (!error && data.session) {
+      console.log('✅ OAuth session created for user:', data.user?.email)
       const forwardedHost = request.headers.get('x-forwarded-host') // Pour gérer les proxys/load balancers
       const isLocalEnv = process.env.NODE_ENV === 'development'
 
@@ -22,10 +23,16 @@ export async function GET(request: Request) {
       } else {
         return NextResponse.redirect(`${origin}${next}`)
       }
+    } else {
+        console.error('❌ OAuth error:', error?.message)
+        return NextResponse.redirect(
+          `${origin}/auth/auth-code-error?error=${encodeURIComponent(error?.message || 'Unknown error')}`
+        )
     }
   }
 
   // En cas d'erreur, rediriger vers une page d'erreur
+  console.error('❌ No code in callback URL')
   return NextResponse.redirect(`${origin}/auth/auth-code-error`)
 }
 
