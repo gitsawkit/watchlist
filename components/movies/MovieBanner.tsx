@@ -1,19 +1,20 @@
+import { useCallback } from "react"
 import Image from "next/image"
 import { getImageUrl } from "@/lib/tmdb"
 import type { MovieBannerProps } from "@/types/components"
 import { Star, Clock, Calendar } from "lucide-react"
 
 export function MovieBanner({ movie, backdropUrl }: MovieBannerProps) {
-  const formatRuntime = (minutes: number) => {
+  const formatRuntime = useCallback((minutes: number) => {
     const hours = Math.floor(minutes / 60)
     const mins = minutes % 60
     return hours > 0 ? `${hours}h ${mins}min` : `${mins}min`
-  }
+  }, [])
 
-  const formatDate = (dateString: string) => {
+  const formatDate = useCallback((dateString: string) => {
     const date = new Date(dateString)
     return date.toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" })
-  }
+  }, [])
 
   return (
     <div className="relative w-full h-[70vh] min-h-125 max-h-200 overflow-hidden">

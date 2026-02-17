@@ -4,22 +4,19 @@ import Image from "next/image"
 import Link from "next/link"
 import { getImageUrl } from "@/lib/tmdb"
 import { Button } from "@/components/ui/button"
-import { Plus, Star, Info, Eye } from "lucide-react"
+import { Plus, Star, Eye } from "lucide-react"
 import { cn } from "@/lib/utils"
 import type { MovieCardProps } from "@/types/components"
 
 export function MovieCard({ movie, className, isExpanded = false, onToggle }: MovieCardProps) {
-  const handleClick = () => {
-    onToggle?.()
-  }
-
   return (
-    <div
+    <Link
+      href={`/movie/${movie.id}`}
       className={cn(
-        "group relative overflow-hidden rounded-(--radius-cinema) bg-surface transition-all duration-300 hover:shadow-cinema hover:scale-[1.02] transform cursor-pointer",
+        "group relative overflow-hidden rounded-(--radius-cinema) bg-surface transition-all duration-300 hover:shadow-cinema hover:scale-[1.02] transform cursor-pointer block",
         className
       )}
-      onClick={handleClick}
+      onClick={() => onToggle?.()}
     >
       <div className="relative aspect-2/3 w-full overflow-hidden">
         <Image
@@ -80,20 +77,14 @@ export function MovieCard({ movie, className, isExpanded = false, onToggle }: Mo
             </p>
           </div>
 
-          <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
-            <Button size="sm" className="flex-1 gap-2 bg-red hover:bg-red-2 text-text border-none shadow-cinema cursor-pointer">
+          <div onClick={(e) => e.stopPropagation()}>
+            <Button size="sm" className="w-full gap-2 bg-red hover:bg-red-2 text-text border-none shadow-cinema cursor-pointer">
               <Plus className="h-4 w-4 fill-current" />
-              <span className="hidden md:inline">Ajouter</span>
-            </Button>
-            <Button size="sm" variant="outline" className="flex-1 gap-2 border-border/20 bg-surface/40 text-text hover:bg-surface-2/60 hover:text-text backdrop-blur-md cursor-pointer" asChild>
-              <Link href={`/movie/${movie.id}`}>
-                <Info className="h-4 w-4" />
-                Info
-              </Link>
+              Ajouter
             </Button>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

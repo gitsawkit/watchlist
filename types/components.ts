@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import type { Movie, MovieDetails, Cast, Video } from "@/types/tmdb"
+import type { Movie, MovieDetails, Cast, Video, ActorDetails, ActorMovieCredit, ActorTvCredit } from "@/types/tmdb"
 
 // ─── Layout ──────────────────────────────────────────────
 
@@ -31,6 +31,7 @@ export interface MovieSectionProps {
 export interface InfiniteScrollMoviesProps {
   initialMovies: Movie[]
   category: string
+  clientSideData?: Movie[]
 }
 
 export interface MovieBannerProps {
@@ -106,4 +107,19 @@ export interface CinemaSpotlightProps {
    * @default "top-0"
    */
   position?: string
+}
+
+// ─── Actor ───────────────────────────────────────────────
+
+export interface ActorBannerProps {
+  actor: ActorDetails
+}
+
+export interface ActorBioProps {
+  biography: string
+}
+
+export interface ActorFilmographyProps {
+  movies: ActorMovieCredit[]
+  tvShows: ActorTvCredit[]
 }

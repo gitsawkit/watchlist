@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useCallback } from "react"
 import { useInView } from "@/lib/hooks"
 import { Movie } from "@/types/tmdb"
 import { MovieGrid } from "@/components/movies/MovieGrid"
@@ -8,7 +8,7 @@ import { Loader2 } from "lucide-react"
 import { fetchMoreMovies } from "@/app/actions/movies"
 import type { InfiniteScrollMoviesProps } from "@/types/components"
 
-export function InfiniteScrollMovies({ initialMovies, category }: InfiniteScrollMoviesProps) {
+export function InfiniteScrollMovies({ initialMovies, category, clientSideData }: InfiniteScrollMoviesProps) {
   const [movies, setMovies] = useState<Movie[]>(initialMovies)
   const [page, setPage] = useState(2)
   const [loading, setLoading] = useState(false)
@@ -23,39 +23,51 @@ export function InfiniteScrollMovies({ initialMovies, category }: InfiniteScroll
     setHasMore(true)
   }, [category, initialMovies])
 
-  useEffect(() => {
-    const loadMore = async () => {
-      if (loading || !hasMore) return
+  const loadMore = useCallback(async () => {
+    if (loading || !hasMore) return
 
-      setLoading(true)
-      try {
-        const newMovies = await fetchMoreMovies(category, page)
-        if (newMovies.length === 0) {
-          setHasMore(false)
-        } else {
-          setMovies((prev) => {
-            const existingIds = new Set(prev.map(m => m.id))
-            const uniqueNewMovies = newMovies.filter(m => !existingIds.has(m.id))
+    setLoading(true)
+    try {
+      let newMovies: Movie[] = []
 
-            if (uniqueNewMovies.length === 0) {
-              setHasMore(false)
-              return prev
-            }
-            return [...prev, ...uniqueNewMovies]
-          })
-          setPage((prev) => prev + 1)
-        }
-      } catch (error) {
-        console.error("Error loading more movies:", error)
-      } finally {
-        setLoading(false)
+      if (clientSideData) {
+        const pageSize = 20
+        const start = (page - 1) * pageSize
+        const end = start + pageSize
+        newMovies = clientSideData.slice(start, end)
+
+        await new Promise(resolve => setTimeout(resolve, 500))
+      } else {
+        newMovies = await fetchMoreMovies(category, page)
       }
-    }
 
+      if (newMovies.length === 0) {
+        setHasMore(false)
+      } else {
+        setMovies((prev) => {
+          const existingIds = new Set(prev.map(m => m.id))
+          const uniqueNewMovies = newMovies.filter(m => !existingIds.has(m.id))
+
+          if (uniqueNewMovies.length === 0) {
+            setHasMore(false)
+            return prev
+          }
+          return [...prev, ...uniqueNewMovies]
+        })
+        setPage((prev) => prev + 1)
+      }
+    } catch (error) {
+      console.error("Error loading more movies:", error)
+    } finally {
+      setLoading(false)
+    }
+  }, [category, hasMore, loading, page, clientSideData])
+
+  useEffect(() => {
     if (inView) {
       loadMore()
     }
-  }, [category, hasMore, inView, loading, page])
+  }, [inView, loadMore])
 
   return (
     <>

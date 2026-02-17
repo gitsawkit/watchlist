@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useCallback } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import type { HorizontalScrollProps } from "@/types/components"
@@ -14,12 +14,12 @@ export function HorizontalScroll({
 }: HorizontalScrollProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
-  const scroll = (direction: 'left' | 'right') => {
+  const scroll = useCallback((direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const amount = direction === 'left' ? -scrollAmount : scrollAmount
       scrollContainerRef.current.scrollBy({ left: amount, behavior: 'smooth' })
     }
-  }
+  }, [scrollAmount])
 
   return (
     <div className={`group/section ${className}`}>

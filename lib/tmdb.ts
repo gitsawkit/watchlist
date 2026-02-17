@@ -1,16 +1,14 @@
 import type {
   Movie,
-  Genre,
   MovieDetails,
-  Cast,
-  Crew,
   Credits,
   Video,
   VideoResponse,
-  ReleaseDate,
   ReleaseDatesResponse,
-  MovieImage,
   MovieImagesResponse,
+  ActorDetails,
+  ActorMovieCredit,
+  ActorTvCredit,
 } from "@/types/tmdb"
 
 const TMDB_API_KEY = process.env.TMDB_API_KEY
@@ -34,7 +32,7 @@ async function fetchTMDB<T>(endpoint: string, params: Record<string, string> = {
   const url = `${TMDB_BASE_URL}${endpoint}?${queryParams.toString()}`
 
   const res = await fetch(url, {
-    next: { revalidate: 3600 }, // Cache d'une heure par défaut
+
   })
 
   if (!res.ok) {
@@ -124,7 +122,7 @@ export async function getMovieDetails(id: number): Promise<MovieDetails> {
       }
     }
   } catch (error) {
-    // Si l'API ne retourne pas de certification, on continue sans
+
     console.warn("Could not fetch certification:", error);
   }
 
@@ -207,4 +205,29 @@ export function getImageUrl(path: string | null, size: "w500" | "original" = "w5
     return `${TMDB_IMAGE_ORIGINAL_URL}${path}`;
   }
   return `${TMDB_IMAGE_BASE_URL}${path}`;
+}
+
+// --- ACTOR API ---
+
+/**
+ * Récupère les détails d'un acteur
+ */
+export async function getActorDetails(id: number): Promise<ActorDetails> {
+  return fetchTMDB<ActorDetails>(`/person/${id}`);
+}
+
+/**
+ * Récupère la filmographie cinéma d'un acteur
+ */
+export async function getActorMovieCredits(id: number): Promise<ActorMovieCredit[]> {
+  const data = await fetchTMDB<{ cast: ActorMovieCredit[] }>(`/person/${id}/movie_credits`);
+  return data.cast;
+}
+
+/**
+ * Récupère la filmographie séries TV d'un acteur
+ */
+export async function getActorTvCredits(id: number): Promise<ActorTvCredit[]> {
+  const data = await fetchTMDB<{ cast: ActorTvCredit[] }>(`/person/${id}/tv_credits`);
+  return data.cast;
 }

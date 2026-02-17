@@ -13,3 +13,11 @@ export type MoviePageParams = Promise<{ id: string }>
 export interface MoviePageProps {
   params: MoviePageParams
 }
+
+// ─── Actor ───────────────────────────────────────────────
+
+export type ActorPageParams = Promise<{ id: string }>
+
+export interface ActorPageProps {
+  params: ActorPageParams
+}

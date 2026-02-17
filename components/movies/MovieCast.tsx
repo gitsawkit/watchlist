@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { getImageUrl } from "@/lib/tmdb"
 import { HorizontalScroll } from "@/components/shared/HorizontalScroll"
 import type { MovieCastProps } from "@/types/components"
@@ -17,8 +18,9 @@ export function MovieCast({ cast }: MovieCastProps) {
         scrollAmount={300}
       >
         {cast.map((actor, index) => (
-          <div
+          <Link
             key={actor.id}
+            href={`/actor/${actor.id}`}
             className="flex-none w-32 md:w-36 snap-start flex flex-col items-center text-center space-y-2 group"
             style={{
               animation: `slideUp 0.5s ease-out forwards`,
@@ -36,14 +38,14 @@ export function MovieCast({ cast }: MovieCastProps) {
               />
             </div>
             <div className="space-y-1 w-full">
-              <p className="font-semibold text-text text-sm md:text-base line-clamp-2">
+              <p className="font-semibold text-text text-sm md:text-base line-clamp-2 group-hover:text-red-2 transition-colors">
                 {actor.name}
               </p>
               <p className="text-xs md:text-sm text-muted line-clamp-2">
                 {actor.character}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </HorizontalScroll>
     </section>

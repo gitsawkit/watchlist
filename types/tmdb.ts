@@ -95,3 +95,42 @@ export interface MovieImagesResponse {
   posters: MovieImage[]
 }
 
+// ─── Actor ───────────────────────────────────────────────
+
+export interface ActorDetails {
+  id: number
+  name: string
+  biography: string
+  birthday: string | null
+  deathday: string | null
+  place_of_birth: string | null
+  profile_path: string | null
+  known_for_department: string
+  popularity: number
+  also_known_as: string[]
+  gender: number
+}
+
+export interface ActorMovieCredit {
+  id: number
+  title: string
+  character: string
+  poster_path: string | null
+  backdrop_path: string | null
+  release_date: string
+  vote_average: number
+  popularity: number
+  overview: string
+}
+
+export interface ActorTvCredit {
+  id: number
+  name: string
+  character: string
+  poster_path: string | null
+  backdrop_path: string | null
+  first_air_date: string
+  vote_average: number
+  popularity: number
+  overview: string
+}
