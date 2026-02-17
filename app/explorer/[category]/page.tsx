@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/server"
 import { redirect, notFound } from "next/navigation"
-import { getPopularMovies, getTopRatedMovies, getUpcomingMovies, getNowPlayingMovies, getTrendingMovies } from "@/lib/tmdb"
+import { getPopularMovies, getTopRatedMovies, getUpcomingMovies, getNowPlayingMovies, getTrendingMovies, Movie } from "@/lib/tmdb"
 import { CategoryNav } from "@/components/navigation/CategoryNav"
 import { InfiniteScrollMovies } from "@/components/movies/InfiniteScrollMovies"
 
@@ -11,7 +11,7 @@ interface PageProps {
 }
 
 export default async function CategoryPage(props: PageProps) {
-  const params = await props.params;
+  const params = await props.params
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -21,7 +21,7 @@ export default async function CategoryPage(props: PageProps) {
 
   const category = params.category
   let title = ""
-  let initialMovies = []
+  let initialMovies: Movie[] = []
 
   switch (category) {
     case "popular":
@@ -56,7 +56,7 @@ export default async function CategoryPage(props: PageProps) {
 
       <CategoryNav />
 
-      <InfiniteScrollMovies key={category} initialMovies={initialMovies} category={category} />
+      <InfiniteScrollMovies initialMovies={initialMovies} category={category} />
     </div>
   )
 }
