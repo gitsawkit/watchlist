@@ -14,7 +14,7 @@ export function InfiniteScrollMovies({ initialMovies, category, clientSideData }
   const [loading, setLoading] = useState(false)
   const [hasMore, setHasMore] = useState(true)
   const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref)
+  const inView = useInView(ref, { rootMargin: "0px 0px 200px 0px" })
 
   useEffect(() => {
     setMovies(initialMovies)

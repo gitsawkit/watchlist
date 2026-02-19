@@ -7,20 +7,21 @@ export function useInView(
 ): boolean {
   const [isIntersecting, setIsIntersecting] = useState(false)
 
+  const { root, rootMargin, threshold } = options
+
   useEffect(() => {
     const element = ref.current
     if (!element) return
 
     const observer = new IntersectionObserver(([entry]) => {
       setIsIntersecting(entry.isIntersecting)
-    }, options)
+    }, { root, rootMargin, threshold })
 
     observer.observe(element)
 
-    return () => {
-      observer.unobserve(element)
-    }
-  }, [ref, options.root, options.rootMargin, options.threshold, options])
+    return () => observer.unobserve(element)
+
+  }, [ref, root, rootMargin, threshold])
 
   return isIntersecting
 }
