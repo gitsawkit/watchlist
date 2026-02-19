@@ -9,7 +9,7 @@ import type { WatchButtonProps } from "@/types/components"
 
 
 export function WatchButton({
-    movieId, movieTitle, posterPath, status, initialActive = false, variant = "icon"
+    movieId, movieTitle, posterPath, status, initialActive = false, variant = "icon", fallbackStatus
 }: WatchButtonProps) {
     const [active, setActive] = useState(initialActive)
     const [loading, setLoading] = useState(false)
@@ -21,7 +21,11 @@ export function WatchButton({
         setLoading(true)
         try {
             if (active) {
-                await removeFromWatchlist(movieId)
+                if (fallbackStatus) {
+                    await addToWatchlist(movieId, movieTitle, posterPath, fallbackStatus)
+                } else {
+                    await removeFromWatchlist(movieId)
+                }
             } else {
                 await addToWatchlist(movieId, movieTitle, posterPath, status)
             }

@@ -68,9 +68,10 @@ export interface WatchButtonProps {
     movieId: number
     movieTitle: string
     posterPath: string | null
-    status: WatchStatus           // "watched" pour l'Eye, "to_watch" pour le Plus
+    status: WatchStatus
     initialActive?: boolean
-    variant?: "icon" | "full"    // icon = rond (Eye), full = bouton large (Plus)
+    fallbackStatus?: WatchStatus
+    variant?: "icon" | "full"
 }
 
 // ─── Navigation ──────────────────────────────────────────
