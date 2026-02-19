@@ -5,6 +5,8 @@ import { MovieTrailers } from "@/components/movies/MovieTrailers"
 import { MovieDescription } from "@/components/movies/MovieDescription"
 import { MovieCast } from "@/components/movies/MovieCast"
 import type { MoviePageProps } from "@/types/pages"
+import { WatchButton } from "@/components/movies/WatchButton"
+import { getMovieWatchlistStatus } from "@/app/actions/watchlist"
 
 export default async function MoviePage(props: MoviePageProps) {
   const params = await props.params
@@ -41,10 +43,34 @@ export default async function MoviePage(props: MoviePageProps) {
 
   const heroImagePath = selectHeroImage(images, movieDetails.backdrop_path)
   const heroImageUrl = getImageUrl(heroImagePath, "original")
+  const watchlistStatus = await getMovieWatchlistStatus(movieId)
 
   return (
     <div className="min-h-screen">
-      <MovieBanner movie={movieDetails} backdropUrl={heroImageUrl} />
+      <MovieBanner
+        movie={movieDetails}
+        backdropUrl={heroImageUrl}
+        actions={
+          <>
+            <WatchButton
+              movieId={movieDetails.id}
+              movieTitle={movieDetails.title}
+              posterPath={movieDetails.poster_path}
+              status="to_watch"
+              variant="full"
+              initialActive={watchlistStatus === "to_watch"}
+            />
+            <WatchButton
+              movieId={movieDetails.id}
+              movieTitle={movieDetails.title}
+              posterPath={movieDetails.poster_path}
+              status="watched"
+              variant="icon"
+              initialActive={watchlistStatus === "watched"}
+            />
+          </>
+        }
+      />
 
       <div className="container mx-auto px-6 lg:px-12 py-8 space-y-12">
         <MovieDescription description={movieDetails.overview} tagline={movieDetails.tagline} />

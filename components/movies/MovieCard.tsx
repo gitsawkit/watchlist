@@ -4,9 +4,10 @@ import Image from "next/image"
 import Link from "next/link"
 import { getImageUrl } from "@/lib/tmdb"
 import { Button } from "@/components/ui/button"
-import { Plus, Star, Eye } from "lucide-react"
+import { Star } from "lucide-react"
 import { cn } from "@/lib/utils"
 import type { MovieCardProps } from "@/types/components"
+import { WatchButton } from "@/components/movies/WatchButton"
 
 export function MovieCard({ movie, className }: MovieCardProps) {
   return (
@@ -37,12 +38,13 @@ export function MovieCard({ movie, className }: MovieCardProps) {
           "translate-y-0 opacity-0 group-hover:-translate-y-1 group-hover:opacity-100",
           "md:group-hover:-translate-y-1 md:group-hover:opacity-100"
         )}>
-          <div
-            className="h-8 w-8 rounded-full bg-surface/40 text-text backdrop-blur-md border border-border/10 flex items-center justify-center hover:bg-surface/60 transition-colors"
-            title="Marquer comme vu"
-          >
-            <Eye className="h-4 w-4" />
-          </div>
+        <WatchButton
+            movieId={movie.id}
+            movieTitle={movie.title}
+            posterPath={movie.poster_path}
+            status="watched"
+            variant="icon"
+          />
         </div>
 
         <div className={cn(
@@ -70,12 +72,13 @@ export function MovieCard({ movie, className }: MovieCardProps) {
             </p>
           </div>
 
-          <div>
-            <Button size="sm" className="w-full gap-2 bg-red hover:bg-red-2 text-text border-none shadow-cinema cursor-pointer pointer-events-none">
-              <Plus className="h-4 w-4 fill-current" />
-              Ajouter
-            </Button>
-          </div>
+          <WatchButton
+            movieId={movie.id}
+            movieTitle={movie.title}
+            posterPath={movie.poster_path}
+            status="to_watch"
+            variant="full"
+          />
         </div>
       </div>
     </Link>

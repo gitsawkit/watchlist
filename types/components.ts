@@ -12,6 +12,7 @@ export interface FeatureCardProps {
 // ─── Movies ──────────────────────────────────────────────
 
 export type Tab = "movies" | "tv"
+export type WatchStatus = "to_watch" | "watched"
 
 export interface MovieGridProps {
   movies: Movie[]
@@ -37,6 +38,7 @@ export interface InfiniteScrollMoviesProps {
 export interface MovieBannerProps {
   movie: MovieDetails
   backdropUrl: string
+  actions?: React.ReactNode
 }
 
 export interface MovieDescriptionProps {
@@ -50,6 +52,25 @@ export interface MovieTrailersProps {
 
 export interface MovieCastProps {
   cast: Cast[]
+}
+
+export interface WatchlistEntry {
+  id: string
+  user_id: string
+  movie_id: number
+  movie_title: string
+  poster_path: string | null
+  status: WatchStatus
+  created_at: string
+  }
+
+export interface WatchButtonProps {
+    movieId: number
+    movieTitle: string
+    posterPath: string | null
+    status: WatchStatus           // "watched" pour l'Eye, "to_watch" pour le Plus
+    initialActive?: boolean
+    variant?: "icon" | "full"    // icon = rond (Eye), full = bouton large (Plus)
 }
 
 // ─── Navigation ──────────────────────────────────────────

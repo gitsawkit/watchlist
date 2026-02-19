@@ -4,7 +4,7 @@ import { getImageUrl } from "@/lib/tmdb"
 import type { MovieBannerProps } from "@/types/components"
 import { Star, Clock, Calendar } from "lucide-react"
 
-export function MovieBanner({ movie, backdropUrl }: MovieBannerProps) {
+export function MovieBanner({ movie, backdropUrl, actions }: MovieBannerProps) {
   const formatRuntime = useCallback((minutes: number) => {
     const hours = Math.floor(minutes / 60)
     const mins = minutes % 60
@@ -88,6 +88,12 @@ export function MovieBanner({ movie, backdropUrl }: MovieBannerProps) {
                     {genre.name}
                   </span>
                 ))}
+              </div>
+            )}
+
+            {actions && (
+              <div className="flex items-center gap-3 mt-2">
+                {actions}
               </div>
             )}
           </div>
