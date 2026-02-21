@@ -3,6 +3,11 @@ import { createClient } from "@/lib/supabase/server"
 import { getUserWatchlist } from "@/app/actions/watchlist"
 import { LibraryTabs } from "@/components/library/LibraryTabs"
 
+export const metadata = {
+    title: 'Ma bibliothèque - Reelmark',
+    description: 'Consultez votre collection de films et séries TV',
+}
+
 export default async function LibraryPage() {
     const supabase = await createClient()
     const { data: { user }} = await supabase.auth.getUser()
