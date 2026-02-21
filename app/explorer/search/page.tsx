@@ -1,7 +1,6 @@
 import { searchMovies } from "@/lib/tmdb"
 import { MovieGrid } from "@/components/movies/MovieGrid"
 import { SearchBar } from "@/components/search/SearchBar"
-import { CategoryNav } from "@/components/navigation/CategoryNav"
 
 interface SearchPageProps {
     searchParams: Promise<{ q?: string; query?: string }>

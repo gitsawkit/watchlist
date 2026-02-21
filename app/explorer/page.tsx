@@ -41,7 +41,6 @@ export default async function ExplorerPage() {
       </div>
 
       <SearchBar />
-
       <CategoryNav />
       <MovieSection title="Tendances de la semaine" movies={moviesTrending} categoryUrl="/explorer/trending" />
       <MovieSection title="Actuellement au cinéma" movies={moviesNowPlaying} categoryUrl="/explorer/now-playing" />
