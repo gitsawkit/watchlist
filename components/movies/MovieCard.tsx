@@ -3,7 +3,6 @@
 import Image from "next/image"
 import Link from "next/link"
 import { getImageUrl } from "@/lib/tmdb"
-import { Button } from "@/components/ui/button"
 import { Star } from "lucide-react"
 import { cn } from "@/lib/utils"
 import type { MovieCardProps } from "@/types/components"
@@ -38,7 +37,7 @@ export function MovieCard({ movie, className }: MovieCardProps) {
           "translate-y-0 opacity-0 group-hover:-translate-y-1 group-hover:opacity-100",
           "md:group-hover:-translate-y-1 md:group-hover:opacity-100"
         )}>
-        <WatchButton
+          <WatchButton
             movieId={movie.id}
             movieTitle={movie.title}
             posterPath={movie.poster_path}

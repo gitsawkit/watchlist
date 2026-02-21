@@ -3,6 +3,7 @@ import { redirect } from "next/navigation"
 import { getPopularMovies, getTopRatedMovies, getUpcomingMovies, getNowPlayingMovies, getTrendingMovies } from "@/lib/tmdb"
 import { MovieSection } from "@/components/movies/MovieSection"
 import { CategoryNav } from "@/components/navigation/CategoryNav"
+import { SearchBar } from "@/components/search/SearchBar"
 
 export default async function ExplorerPage() {
   const supabase = await createClient()
@@ -38,6 +39,8 @@ export default async function ExplorerPage() {
         <h1 className="text-3xl font-bold mb-2">Explorer</h1>
         <p className="text-muted">Découvrez des films à ajouter à votre collection.</p>
       </div>
+
+      <SearchBar />
 
       <CategoryNav />
       <MovieSection title="Tendances de la semaine" movies={moviesTrending} categoryUrl="/explorer/trending" />

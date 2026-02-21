@@ -29,22 +29,17 @@ export async function updateSession(request: NextRequest) {
     }
   )
 
-  // IMPORTANT: Avoid writing any logic between createServerClient and
-  // supabase.auth.getUser(). A simple mistake could make it very hard to debug
-  // issues with users being randomly logged out.
 
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
-  // 1. Si l'utilisateur est connecté et va sur la racine '/', on le redirige vers le dashboard
   if (user && request.nextUrl.pathname === '/') {
     const url = request.nextUrl.clone()
     url.pathname = '/explorer'
     return NextResponse.redirect(url)
   }
 
-  // 2. Si l'utilisateur N'EST PAS connecté et essaie d'accéder au dashboard (ou autre route protégée), on le redirige vers login
   if (!user && request.nextUrl.pathname.startsWith('/explorer')) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
